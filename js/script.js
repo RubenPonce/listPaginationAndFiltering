@@ -46,19 +46,11 @@ function showPage(listLength, page){
     let paginationLink = document.createElement('a');
     paginationList.appendChild(paginationLink);
     paginationLink.textContent = (i).toString();
+    paginationLink.href = "#";
     paginationLink.addEventListener('click',()=>{
       showPage(10, i);
     });
   }
-
-
-
-
-
-
-
-
-
 
 
  //begins list on first page.
