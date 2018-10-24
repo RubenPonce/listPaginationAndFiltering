@@ -4,14 +4,10 @@ FSJS project 2 - List Filter and Pagination
 ******************************************/
 // Add variables that store DOM elements you will need to reference and/or manipulate
 
-
 let ul = document.querySelector(".student-list");
 let li= document.querySelectorAll(".student-item");
 let div = document.querySelector(".page");
 const listLength = 10;
-
-
-
 
 // Create a function to hide all of the items in the list excpet for the ten you want to show
 // Tip: Keep in mind that with a list of 54 studetns, the last page will only display four
@@ -29,8 +25,6 @@ function showPage(listLength, page){
       li[i].style.display ="block";
   }
 }
-
-
 
 // Create and append the pagination links - Creating a function that can do this is a good approach
 //create's buttons for page class depending on total list length
