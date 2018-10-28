@@ -15,37 +15,36 @@ studentNames.className = "studentNames";
 let studentSearch = document.createElement('div');
 let input = document.createElement('input');
 let button = document.createElement('button');
-let filter = input.value.toUpperCase();
 divHeader.appendChild(studentSearch);
 studentSearch.appendChild(input)
 studentSearch.appendChild(button);
 studentSearch.className = "student-search";
 input.placeholder= "Search for students...";
 button.textContent = "Search";
+//searches through list items for names on Search press
+let resultCounter = 0;
+  button.addEventListener('click', ()=>{
+        let filter = input.value.toUpperCase();
+        for (let i = 0; i < li.length; i++) {
+        let name = li[i].innerHTML;
+          if (name.toUpperCase().indexOf(filter) > -1 ){
+                  li[i].style.display = 'block';
 
-button.addEventListener('click', ()=>{
-      filter = input.value.toUpperCase();
-      for (let i = 0; i < li.length; i++) {
-      let name = li[i].innerHTML;
-        if (name.toUpperCase().indexOf(filter) > -1 ){
-                li[i].style.display = 'block';
-                console.log(studentNames[i].textContent);
-                studentList = studentNames[i].textContent;
-                
-              }
-        else{
-          li[i].style.display = 'none';
+                    resultCounter=resultCounter + 1;
+                }
+          else{
+            li[i].style.display = 'none';
+          }
         }
-      }
-});
+        console.log(resultCounter);
+        appendLinks(resultCounter%10);
+        console.log(resultCounter);
 
+  });
 
-
-// Create a function to hide all of the items in the list excpet for the ten you want to show
-// Tip: Keep in mind that with a list of 54 studetns, the last page will only display four
-
-function showPage(list, page){
-  for (let i = 0; i < li.length; i++) {//this will iterate thru the entire list
+//seperates the lists into intervals of 10
+function showPage(list, page){//showPage
+  for (let i = 0; i < li.length; i++) {
     let domainStart = list*page-list;//(showPage(10, 1), domainStart = 0)
       if(i<domainStart){
         li[i].style.display = "none";
@@ -56,7 +55,7 @@ function showPage(list, page){
       if(i>=domainStart && i<domainStart+list)
       li[i].style.display ="block";
   }
-}
+}//end showPage
 
 let appendLinks = (list) => {
   //append paginationDiv to div and ul to paginationDiv, and list to ul, anchor to list.
@@ -69,7 +68,7 @@ let appendLinks = (list) => {
   let pageUl = document.createElement('ul');
   div.appendChild(paginationDiv);
   paginationDiv.appendChild(pageUl);
-  for (let i = 0; i < li.length/list; i++) {
+  for (let i = 0; i < list; i++) {
 
     let paginationList = document.createElement('li');
     let anchor = document.createElement('a');
@@ -92,5 +91,5 @@ let appendLinks = (list) => {
   }//end for-loop
 
 } //end appendLinks
-appendLinks(10);
+appendLinks(li.length/10);
 showPage(10, 1);
