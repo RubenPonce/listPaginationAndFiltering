@@ -36,9 +36,8 @@ let resultCounter = 0;
             li[i].style.display = 'none';
           }
         }
-        console.log(resultCounter);
-        appendLinks(resultCounter%10);
-        console.log(resultCounter);
+        //attemp at appending links for search results.
+        appendLinks(Math.round(resultCounter/10)+1);
 
   });
 
@@ -57,7 +56,7 @@ function showPage(list, page){//showPage
   }
 }//end showPage
 
-let appendLinks = (list) => {
+let appendLinks = (list) => {//begin appendLinks()
   //append paginationDiv to div and ul to paginationDiv, and list to ul, anchor to list.
   let paginationDiv = document.createElement('div');
   let paginationDivName = document.querySelector(".pagination");
@@ -68,8 +67,9 @@ let appendLinks = (list) => {
   let pageUl = document.createElement('ul');
   div.appendChild(paginationDiv);
   paginationDiv.appendChild(pageUl);
-  for (let i = 0; i < list; i++) {
 
+  for (let i = 0; i < list; i++) {//begin for-loop
+    //create and append li/ link elements
     let paginationList = document.createElement('li');
     let anchor = document.createElement('a');
     pageUl.appendChild(paginationList);
@@ -79,8 +79,8 @@ let appendLinks = (list) => {
     if(i === 0){
       anchor.className = "active";
     }
+    //removes active class upon click
     anchor.addEventListener('click', (event) =>{
-
       let anchorName = document.querySelector(".active");
       if(anchorName !==null){
         anchorName.classList.remove("active");
@@ -90,6 +90,6 @@ let appendLinks = (list) => {
     });
   }//end for-loop
 
-} //end appendLinks
+} //end appendLinks()
 appendLinks(li.length/10);
 showPage(10, 1);
